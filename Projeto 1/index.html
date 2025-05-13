@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projeto 1</title>
+</head>
+
+<body class="bg-white">
+    <!-- Responsividade ok -->
+    <header class="sticky top-0 z-50 flex flex-col items-center justify-center">
+        <!-- Faixa azul -->
+        <div class="w-screen bg-[#005CFF] py-1.5 text-center text-xs font-bold text-white md:text-sm">
+            <p class="px-4">
+                Ganhe
+                <span class="rounded-sm bg-[#6220C1] px-1.5 whitespace-nowrap">R$10,00</span>
+                de desconto no seu primeiro pedido. Utilize o cupom
+                <span class="font-light whitespace-nowrap italic">DESCONTO10</span>
+            </p>
+        </div>
+
+        <!-- Faixa branca -->
+        <div
+            class="relative z-40 flex h-auto w-screen flex-col items-center justify-center gap-6 bg-white px-4 py-4 shadow-[0_0_8px_rgba(0,0,0,0.16)] sm:px-12 md:px-24 lg:px-40 2xl:px-82">
+            <!-- Mobile -->
+            <div class="flex w-full flex-col items-center gap-4 xl:hidden">
+                <!-- Div horizontal 1 -->
+                <div class="flex w-full justify-between">
+                    <!-- Container do megamenu - menu hamburguer -->
+                    <div class="relative" id="mobile-megamenu-container">
+                        <div class="group flex cursor-pointer flex-row items-center gap-2" id="mobile-menu-trigger">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:text-[#005CFF]"
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16M4 12h16M4 20h16" />
+                            </svg>
+                        </div>
+
+                        <!-- MegaMenu -->
+                        <div id="mobile-megamenu"
+                            class="absolute top-full left-0 z-50 hidden w-80 md:w-96 rounded-md bg-white pt-8 shadow-lg">
+                            <!-- Lista de categorias -->
+                            <div class="max-h-80 w-full overflow-y-auto border-r border-gray-200 bg-gray-50 p-4">
+                                <ul id="mobile-categories-list">
+                                    <!-- Populado via JS -->
+                                </ul>
+                            </div>
+
+                            <!-- Subcategorias + Card (mostradas após selecionar categoria) -->
+                            <div id="mobile-subcategories-wrapper" class="hidden w-full p-4">
+                                <div id="mobile-subcategories-container" class="grid grid-cols-1 gap-4">
+                                    <!-- Populado via JS -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logo (centralizada no mobile) -->
+                    <img src="/src/assets/logo-avanti.png" alt="Logo" class="h-6" />
+
+                    <!-- Carrinho -->
+                    <img src="/src/assets/carrinho.svg" class="h-6" />
+                </div>
+
+                <!-- Div horizontal 2 -->
+                <div class="flex w-full">
+                    <!-- Searchbar Mobile -->
+                    <div class="flex w-full">
+                        <div class="flex h-10 w-full items-center rounded-[10px] border border-[#DDDDDD] px-6">
+                            <input id="search-input-mobile"
+                                class="w-full placeholder:text-sm placeholder:font-semibold placeholder:text-black focus:outline-none"
+                                type="text" placeholder="Digite aqui o que você procura" />
+                            <img id="search-button-mobile" src="/src/assets/lupa.svg" alt="Buscar"
+                                class="cursor-pointer" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop  -->
+            <div class="hidden w-full items-center gap-6 xl:flex xl:flex-col">
+                <!-- Div horizontal 1 -->
+                <div class="flex w-full items-center justify-between">
+                    <!-- Logo -->
+                    <img src="/src/assets/logo-avanti.png" alt="Logo" class="h-7" />
+
+                    <!-- Searchbar Desktop (modificada) -->
+                    <div
+                        class="flex h-10 w-full items-center justify-center rounded-[10px] border border-[#DDDDDD] px-4 sm:px-6 xl:max-w-[594px]">
+                        <input id="search-input-desktop"
+                            class="w-full placeholder:text-sm placeholder:font-semibold placeholder:text-black focus:outline-none"
+                            type="text" placeholder="Digite aqui o que você procura" />
+                        <img id="search-button-desktop" src="/src/assets/lupa.svg" alt="Buscar"
+                            class="cursor-pointer" />
+                    </div>
+
+                    <!-- Avatar + Nome + Carrinho -->
+                    <div class="flex items-center justify-center gap-3">
+                        <img class="hidden size-7 md:block" src="/src/assets/avatar.svg" alt="Avatar" />
+                        <div class="hidden text-sm leading-4 font-semibold md:block">
+                            Olá, <br />Nome cliente!
+                        </div>
+                        <img class="size-7" src="/src/assets/carrinho.svg" alt="Carrinho" />
+                    </div>
+                </div>
+
+                <!-- Div horizontal 2 -->
+                <div class="flex w-full items-center justify-between gap-10">
+                    <!--  Menu Hamburguer -->
+                    <div class="flex w-fit items-center justify-between text-nowrap">
+                        <!-- Dropdown de categorias -->
+                        <div class="relative" id="desktop-megamenu-container">
+                            <div class="group flex cursor-pointer flex-row items-center gap-2"
+                                id="desktop-menu-trigger">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5 group-hover:text-[#005CFF]"
+                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                </svg>
+                                <div class="text-sm font-bold group-hover:text-[#005CFF]">
+                                    Todas as categorias
+                                </div>
+                            </div>
+
+                            <!-- MegaMenu Desktop -->
+                            <div id="desktop-megamenu"
+                                class="absolute top-full left-0 z-50 hidden w-[1280px] rounded-md bg-white pt-8 shadow-lg">
+                                <!-- Lista de categorias -->
+                                <div class="flex">
+                                    <div class="max-h-96 w-1/4 overflow-y-auto border-r border-gray-200 bg-gray-50 p-4">
+                                        <ul id="desktop-categories-list">
+                                            <!-- Populado via JS -->
+                                        </ul>
+                                    </div>
+
+                                    <!-- Subcategorias + Card -->
+                                    <div class="flex w-3/4 justify-between p-4">
+                                        <div id="desktop-subcategories-container" class="grid grid-cols-4 gap-12">
+                                            <!-- Populado via JS -->
+                                        </div>
+                                        <div
+                                            class="flex h-72 w-[236px] flex-col gap-6 rounded-[10px] bg-[url('/src/assets/caneca2-gradiente.png')] bg-cover bg-center pt-8 pl-6">
+                                            <p class="max-w-32 text-2xl text-white text-wrap">
+                                                Confira os Produtos
+                                                <span class="font-bold">Que acabaram De Chegar</span>
+                                            </p>
+                                            <a href="#"
+                                                class="w-fit rounded-xl border px-6 py-2 font-bold text-white">VER
+                                                TODOS</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Links das categorias -->
+                    <nav class="flex w-full justify-between">
+                        <a href="#"
+                            class="text-sm hover:scale-105 hover:font-bold hover:text-[#005CFF]">Departamento</a>
+                        <a href="#"
+                            class="text-sm hover:scale-105 hover:font-bold hover:text-[#005CFF]">Departamento</a>
+                        <a href="#"
+                            class="text-sm hover:scale-105 hover:font-bold hover:text-[#005CFF]">Departamento</a>
+                        <a href="#"
+                            class="text-sm hover:scale-105 hover:font-bold hover:text-[#005CFF]">Departamento</a>
+                        <a href="#"
+                            class="text-sm hover:scale-105 hover:font-bold hover:text-[#005CFF]">Departamento</a>
+                        <a href="#"
+                            class="text-sm hover:scale-105 hover:font-bold hover:text-[#005CFF]">Departamento</a>
+                        <a href="#"
+                            class="text-sm hover:scale-105 hover:font-bold hover:text-[#005CFF]">Departamento</a>
+                        <a href="#"
+                            class="text-sm hover:scale-105 hover:font-bold hover:text-[#005CFF]">Departamento</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Adicione esta div abaixo do header para mostrar o resultado da busca -->
+    <div id="search-result" class="hidden w-full px-4 py-2 text-center sm:px-12 md:px-24 lg:px-40 2xl:px-82"></div>
+
+    <!-- Banner -->
+    <section
+        class="flex h-70 w-screen overflow-hidden bg-[#E7E7EA] px-4 md:h-110 md:px-24 lg:h-[510px] lg:px-40 2xl:px-82">
+        <!-- Imagem -->
+        <div class="relative w-1/2 overflow-hidden">
+            <img src="/src/assets/cadeira.jpeg" alt="Cadeira com roupas empilhadas"
+                class="h-full w-full object-cover object-center mix-blend-darken" />
+        </div>
+
+        <!-- Texto -->
+        <div class="flex w-1/2 flex-col items-center justify-center gap-4 px-4 text-center">
+            <h1
+                class="flex flex-col text-[40px] leading-10 sm:text-5xl md:text-6xl md:leading-14 lg:flex-row lg:gap-x-2 lg:text-7xl lg:leading-tight 2xl:text-8xl">
+                <span class="font-bold">SUPER</span>
+                <span class="font-light">SALE</span>
+            </h1>
+            <p
+                class="text-xs font-bold tracking-[0.3em] text-[#005CFF] sm:text-sm md:text-base lg:text-xl 2xl:text-2xl">
+                ITENS SELECIONADOS COM ATÉ
+            </p>
+            <p class="text-4xl font-bold text-[#005CFF] sm:text-5xl md:text-5xl lg:text-6xl 2xl:text-6xl">
+                50%OFF
+            </p>
+        </div>
+    </section>
+
+    <!-- Template do card -->
+    <template id="product-card">
+        <div
+            class="swiper-slide flex max-w-50 flex-col items-center justify-center rounded-[10px] border border-[#DDDDDD] p-4 lg:max-w-60">
+            <div class="relative w-full">
+                <span class="absolute top-0 left-0 rounded bg-[#00264E] px-2 py-1 text-[10px] font-bold text-white">
+                    NOVO
+                </span>
+                <img src="" alt="Imagem do produto" class="product-img h-auto w-full object-contain" />
+            </div>
+            <h3 class="text-ms product-title mt-2 w-full self-start"></h3>
+            <div class="mt-1 flex w-full items-center gap-2 self-start">
+                <div class="min-w-0 flex-1">
+                    <p class="product-original-price self-start truncate text-xs text-[#303030] line-through"></p>
+                    <p class="product-price self-start truncate text-base font-bold"></p>
+                </div>
+                <p
+                    class="product-discount flex-shrink-0 rounded-[4px] bg-[#5EC0BE] px-2 py-1 text-xs text-white underline">
+                </p>
+            </div>
+            <p class="mt-1 w-full self-start text-[12px]">
+                Ou em até
+                <span class="product-installment font-bold"></span>
+            </p>
+            <button
+                class="mt-4 h-10 w-full rounded-[10px] bg-[#005CFF] px-6 py-2.5 font-bold text-white hover:bg-[#0026ff]">
+                Comprar
+            </button>
+        </div>
+    </template>
+
+    <!-- Responsividade ok -->
+    <!-- Carrosel -->
+    <section class="mt-20 flex flex-col gap-4 px-4 sm:px-12 md:px-24 lg:px-40 2xl:px-82">
+        <!-- Cabeçalho -->
+        <div class="flex w-full justify-between">
+            <h2 class="text-xl font-bold">Lançamentos</h2>
+            <a href="#" class="text-sm font-bold hover:text-[#005CFF]">Ver mais</a>
+        </div>
+
+        <!-- Swiper main container -->
+        <div class="swiper relative flex w-full">
+            <!-- Additional wrapper -->
+            <div class="swiper-wrapper pb-12">
+                <!-- Populado com JS -->
+            </div>
+
+            <!-- Navegação -->
+            <img class="custom-swiper-button-prev absolute top-1/2 left-0 z-10 hidden -translate-y-1/2 transform cursor-pointer lg:flex"
+                src="src/assets/seta-prev.svg" alt="" />
+            <img class="custom-swiper-button-next absolute top-1/2 right-0 z-10 hidden -translate-y-1/2 transform cursor-pointer lg:flex"
+                src="src/assets/seta-next.svg" alt="" />
+
+            <!-- Paginação -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Responsividade ok -->
+    <!-- Foto caneca -->
+    <section
+        class="mt-15 flex flex-col items-stretch justify-between gap-8 sm:px-12 md:px-24 lg:mt-30 lg:flex-row lg:px-40 2xl:px-82">
+        <!-- Lado imagem -->
+        <div class="flex items-center justify-center bg-[#C2C2C2] lg:flex-1/2">
+            <img src="/src/assets/caneca.png" alt="" />
+        </div>
+        <!-- Lado texto -->
+        <div class="flex w-full flex-col justify-center px-4 text-left lg:w-1/2">
+            <h1 class="text-2xl font-bold lg:text-3xl">LOREM IPSUM</h1>
+            <p class="mt-6 text-sm md:text-base lg:text-lg">
+                Duis consectetur metus nec lacus auctor dignissim. Mauris
+                vitae finibus dui. Mauris laoreet lacus ut eleifend viverra.
+                Cras efficitur volutpat dui, in lobortis metus lacinia sit
+                amet. Sed lacinia pharetra magna, vel pulvinar ligula
+                hendrerit a. Maecenas fringilla porttitor tortor eget
+                lacinia. Donec sollicitudin euismod orci, auctor fringilla
+                magna consequat interdum. Fusce sagittis elit a libero
+                commodo egestas efficitur id augue.
+            </p>
+            <br />
+            <p class="mt-5 text-sm md:text-base lg:text-lg">
+                Duis consectetur metus nec lacus auctor dignissim. Mauris
+                vitae finibus dui. Mauris laoreet lacus ut eleifend viverra.
+                Cras efficitur volutpat dui, in lobortis metus lacinia sit
+                amet. Sed lacinia pharetra magna, vel pulvinar ligula
+                hendrerit a. Maecenas fringilla porttitor tortor eget
+                lacinia. Donec sollicitudin euismod orci, auctor fringilla
+                magna consequat interdum. Fusce sagittis elit a libero
+                commodo egestas efficitur id augue.
+            </p>
+        </div>
+    </section>
+
+    <!-- Foto caneca 2 -->
+    <section
+        class="mt-15 flex flex-col items-center justify-between gap-10 bg-[#DEDEDE] px-4 py-11 sm:px-12 md:px-24 lg:mt-30 lg:flex-row lg:gap-20 lg:px-40 2xl:px-82">
+        <!-- Lado texto -->
+        <div class="order-2 flex flex-col items-center justify-center gap-8 lg:order-1 lg:w-1/2 lg:gap-16">
+            <h1 class="text-2xl font-bold text-[#4F4F4F] lg:text-3xl">
+                LOREM IMPSUM
+            </h1>
+
+            <div class="flex gap-5">
+                <img src="src/assets/Circulo e Icone.svg" alt="" class="w-15 lg:w-24" />
+                <p class="w-full text-sm text-[#4F4F4F] md:text-base lg:text-lg">
+                    Aenean massa. Cum sociis natoque penatibus et magnis dis
+                    parturient montes, nascetur ridiculus mus. Donec quam
+                    felis, ultricies nec, pellentesque eu, pretium quis,
+                    sem.
+                </p>
+            </div>
+            <div class="flex gap-5">
+                <img src="src/assets/Circulo e Icone.svg" alt="" class="w-15 lg:w-24" />
+                <p class="w-full text-sm text-[#4F4F4F] md:text-base lg:text-lg">
+                    Aenean massa. Cum sociis natoque penatibus et magnis dis
+                    parturient montes, nascetur ridiculus mus. Donec quam
+                    felis, ultricies nec, pellentesque eu, pretium quis,
+                    sem.
+                </p>
+            </div>
+            <div class="flex gap-5">
+                <img src="src/assets/Circulo e Icone.svg" alt="" class="w-15 lg:w-24" />
+                <p class="w-full text-sm text-[#4F4F4F] md:text-base lg:text-lg">
+                    Aenean massa. Cum sociis natoque penatibus et magnis dis
+                    parturient montes, nascetur ridiculus mus. Donec quam
+                    felis, ultricies nec, pellentesque eu, pretium quis,
+                    sem.
+                </p>
+            </div>
+        </div>
+        <!-- Lado imagem -->
+        <img src="src/assets/caneca2.png" alt="" class="order-1 w-full lg:order-2 lg:w-1/2" />
+    </section>
+
+    <!-- Responsividade ok -->
+    <!-- Foto caneca -->
+    <section
+        class="mt-15 flex flex-col items-stretch justify-between gap-8 sm:px-12 md:px-24 lg:mt-30 lg:flex-row lg:px-40 2xl:px-82">
+        <!-- Lado imagem -->
+        <div class="flex items-center justify-center bg-[#C2C2C2] lg:flex-1/2">
+            <img src="/src/assets/caneca.png" alt="" />
+        </div>
+        <!-- Lado texto -->
+        <div class="flex w-full flex-col justify-center px-4 text-left lg:w-1/2">
+            <h1 class="text-2xl font-bold lg:text-3xl">LOREM IPSUM</h1>
+            <p class="mt-6 text-sm md:text-base lg:text-lg">
+                Duis consectetur metus nec lacus auctor dignissim. Mauris
+                vitae finibus dui. Mauris laoreet lacus ut eleifend viverra.
+                Cras efficitur volutpat dui, in lobortis metus lacinia sit
+                amet. Sed lacinia pharetra magna, vel pulvinar ligula
+                hendrerit a. Maecenas fringilla porttitor tortor eget
+                lacinia. Donec sollicitudin euismod orci, auctor fringilla
+                magna consequat interdum. Fusce sagittis elit a libero
+                commodo egestas efficitur id augue.
+            </p>
+            <br />
+            <p class="mt-5 text-sm md:text-base lg:text-lg">
+                Duis consectetur metus nec lacus auctor dignissim. Mauris
+                vitae finibus dui. Mauris laoreet lacus ut eleifend viverra.
+                Cras efficitur volutpat dui, in lobortis metus lacinia sit
+                amet. Sed lacinia pharetra magna, vel pulvinar ligula
+                hendrerit a. Maecenas fringilla porttitor tortor eget
+                lacinia. Donec sollicitudin euismod orci, auctor fringilla
+                magna consequat interdum. Fusce sagittis elit a libero
+                commodo egestas efficitur id augue.
+            </p>
+        </div>
+    </section>
+
+    <!-- Responsividade ok -->
+    <!-- Carrosel -->
+    <section class="mt-20 hidden gap-4 px-4 sm:px-12 md:flex md:flex-col md:px-24 lg:px-40 2xl:px-82">
+        <!-- Cabeçalho -->
+        <div class="flex w-full justify-between">
+            <h2 class="text-xl font-bold">Lançamentos</h2>
+            <a href="#" class="text-sm font-bold hover:text-[#005CFF]">Ver mais</a>
+        </div>
+
+        <!-- Swiper main container -->
+        <div class="swiper relative flex w-full">
+            <!-- Additional wrapper -->
+            <div class="swiper-wrapper pb-12">
+                <!-- Populado com JS -->
+            </div>
+
+            <!-- Navegação -->
+            <img class="custom-swiper-button-prev absolute top-1/2 left-0 z-10 hidden -translate-y-1/2 transform cursor-pointer lg:flex"
+                src="src/assets/seta-prev.svg" alt="" />
+            <img class="custom-swiper-button-next absolute top-1/2 right-0 z-10 hidden -translate-y-1/2 transform cursor-pointer lg:flex"
+                src="src/assets/seta-next.svg" alt="" />
+
+            <!-- Paginação -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Responsividade ok -->
+    <!-- Banner 2 -->
+    <section
+        class="mt-15 flex h-112 w-screen items-center justify-center bg-[url('/src/assets/imagem-banner.png')] bg-cover bg-center lg:mt-25 lg:h-[660px]">
+        <div
+            class="flex h-18 w-screen items-center justify-center bg-[#005CFF] px-5 text-center text-white lg:h-[132px]">
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl 2xl:text-3xl">
+                Entre em contato conosco e verifique a disponibilidade para
+                sua região!
+            </p>
+        </div>
+    </section>
+
+    <!-- Responsividade ok -->
+    <!-- Newsletter -->
+    <section class="mt-12 flex flex-col items-center justify-center gap-10 px-4 sm:px-12 md:px-24 lg:px-40 2xl:px-82">
+        <p class="text-xl font-bold">
+            Cadastre-se na nossa
+            <span class="text-[#005CFF]">newsletter</span>
+        </p>
+        <div
+            class="flex h-auto w-full flex-col items-center justify-center gap-6 rounded-lg bg-[#DEDEDE] py-8 lg:flex xl:flex-row xl:px-6 xl:py-15">
+            <input type="text" placeholder="Digite seu nome"
+                class="h-12 w-full max-w-80 rounded-lg bg-white px-4 text-sm placeholder-[#303030]" />
+            <input type="email" placeholder="Digite seu e-mail"
+                class="h-12 w-full max-w-80 rounded-lg bg-white px-4 text-sm placeholder-[#303030]" />
+
+            <div class="flex items-center justify-center gap-2">
+                <input type="checkbox" id="terms" class="rounded-sm" />
+                <label for="terms" class="text-xs text-[#656565]">
+                    Estou de acordo com a
+                    <a href="#" class="underline">Política de Privacidade</a>
+                </label>
+            </div>
+
+            <input type="submit" value="Cadastrar"
+                class="cursor-pointer rounded-lg bg-[#005CFF] px-6 py-3.5 text-base font-bold text-white" />
+        </div>
+    </section>
+
+    <!-- Responsividade ok -->
+    <!-- Footer -->
+    <footer class="mt-15 mb-10 lg:mt-25">
+        <!-- Faixa cinza -->
+        <div
+            class="flex h-auto w-full flex-col items-center justify-center gap-10 bg-[#F5F5F5] py-15 sm:px-12 md:px-24 lg:px-40 2xl:px-82">
+            <!-- Horizontal 1 -->
+            <div class="flex w-full flex-col gap-15 lg:flex-row 2xl:gap-35">
+                <!-- Logo + redes sociais -->
+                <div class="flex flex-col items-center gap-4">
+                    <!-- Logo -->
+                    <img src="src/assets/logo-avanti.png" alt="" />
+                    <!-- Redes sociais -->
+                    <div class="mt-4 flex w-fit justify-between gap-4">
+                        <img src="src/assets/instagram.svg" alt="Logo do Instagram" />
+                        <img src="src/assets/facebook.svg" alt="Logo do Facebook" />
+                        <img src="src/assets/youtube-logo.svg" alt="Logo do YouTube" />
+                        <img src="src/assets/logo-tiktok-svgrepo-com.svg" alt="Logo do TikTok" />
+                    </div>
+                </div>
+
+                <!-- Seções - desktop -->
+                <div id="mobile-menu" class="hidden w-full justify-between lg:flex">
+                    <!-- Institucional -->
+                    <div class="flex flex-col gap-2 text-sm">
+                        <h4 class="mb-3 font-bold">Institucional</h4>
+                        <h5><a href="#">Sobre Nós</a></h5>
+                        <h5><a href="#">Nossas Lojas</a></h5>
+                        <h5><a href="#">Privacidade e Segurança</a></h5>
+                        <h5><a href="#">Termos e Condições</a></h5>
+                    </div>
+
+                    <!-- Central de Ajuda -->
+                    <div class="flex flex-col gap-2 text-sm">
+                        <h4 class="mb-3 font-bold">Central de Ajuda</h4>
+                        <h5><a href="#">Fale Conosco</a></h5>
+                        <h5><a href="#">Frete e Entrega</a></h5>
+                        <h5><a href="#">Trocas e Devoluções</a></h5>
+                        <h5><a href="#">Formas de Pagamento</a></h5>
+                        <h5><a href="#">FAQ</a></h5>
+                    </div>
+
+                    <!-- Atendimento -->
+                    <div class="flex flex-col gap-2 text-sm">
+                        <h4 class="mb-3 font-bold">Atendimento</h4>
+                        <h5>
+                            <span class="font-bold text-[#303030]">Telefone: </span>(00) 1234-5678
+                        </h5>
+                        <h5>
+                            <span class="font-bold text-[#303030]">E-mail:
+                            </span>
+                            exemplo@exemplo.com.br
+                        </h5>
+                        <h5>
+                            <span class="font-bold text-[#303030]">Horário de atendimento: <br />
+                            </span>
+                            Segunda a Sábado: 07h00 às 23h00 <br />
+                            Domingos e Feriados: 07h00 às 21h00
+                        </h5>
+                    </div>
+                </div>
+
+                <!-- Seções - mobile -->
+                <div class="flex flex-col items-center justify-between lg:hidden">
+                    <!-- Seção Institucional -->
+                    <div class="w-full border-t-1 border-b-1 border-gray-300">
+                        <div
+                            class="dropdown-header flex cursor-pointer items-center justify-between px-5 py-4 hover:bg-gray-50">
+                            <h5 class="text-base font-medium text-gray-800">
+                                Institucional
+                            </h5>
+                            <svg class="dropdown-arrow h-5 w-5 transform text-blue-600 transition-transform duration-300"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div
+                            class="dropdown-content max-h-0 overflow-hidden bg-gray-50 pl-6 transition-all duration-300 ease-in-out">
+                            <ul class="px-4">
+                                <li class="border-b-1 border-b-gray-300 py-4">
+                                    <a href="#" class="text-gray-700 hover:text-blue-600">Sobre Nós</a>
+                                </li>
+                                <li class="border-b-1 border-b-gray-300 py-4">
+                                    <a href="#" class="text-gray-700 hover:text-blue-600">Nossas Lojas</a>
+                                </li>
+                                <li class="border-b-1 border-b-gray-300 py-4">
+                                    <a href="#" class="text-gray-700 hover:text-blue-600">Privacidade e Segurança</a>
+                                </li>
+                                <li class="py-4">
+                                    <a href="#" class="text-gray-700 hover:text-blue-600">Termos e Condições</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Central de Ajuda -->
+                    <div class="w-full border-b-1 border-gray-300">
+                        <div
+                            class="dropdown-header flex cursor-pointer items-center justify-between px-5 py-4 hover:bg-gray-50">
+                            <h5 class="text-base font-medium text-gray-800">
+                                Central de Ajuda
+                            </h5>
+                            <svg class="dropdown-arrow h-5 w-5 transform text-blue-600 transition-transform duration-300"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div
+                            class="dropdown-content max-h-0 overflow-hidden bg-gray-50 pl-6 transition-all duration-300 ease-in-out">
+                            <ul class="px-4">
+                                <li class="border-b-1 border-b-gray-300 py-4">
+                                    <a href="#" class="text-gray-700 hover:text-blue-600">Fale Conosco</a>
+                                </li>
+                                <li class="border-b-1 border-b-gray-300 py-4">
+                                    <a href="#" class="text-gray-700 hover:text-blue-600">Frete e Entrega</a>
+                                </li>
+                                <li class="border-b-1 border-b-gray-300 py-4">
+                                    <a href="#" class="text-gray-700 hover:text-blue-600">Trocas e Devoluções</a>
+                                </li>
+                                <li class="border-b-1 border-b-gray-300 py-4">
+                                    <a href="#" class="text-gray-700 hover:text-blue-600">Formas de Pagamento</a>
+                                </li>
+                                <li class="py-4">
+                                    <a href="#" class="text-gray-700 hover:text-blue-600">FAQ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Atendimento -->
+                    <div class="w-full border-b-1 border-gray-300">
+                        <div
+                            class="dropdown-header flex cursor-pointer items-center justify-between px-5 py-4 hover:bg-gray-50">
+                            <h5 class="text-base font-medium text-gray-800">
+                                Atendimento
+                            </h5>
+                            <svg class="dropdown-arrow h-5 w-5 transform text-blue-600 transition-transform duration-300"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div
+                            class="dropdown-content max-h-0 overflow-hidden bg-gray-50 pl-6 transition-all duration-300 ease-in-out">
+                            <div class="px-4">
+                                <h5 class="border-b-1 border-b-gray-300 py-4">
+                                    <span class="font-bold text-[#303030]">Telefone:
+                                    </span>
+                                    (00) 1234-5678
+                                </h5>
+                                <h5 class="border-b-1 border-b-gray-300 py-4">
+                                    <span class="font-bold text-[#303030]">E-mail:
+                                    </span>
+                                    exemplo@exemplo.com.br
+                                </h5>
+                                <h5 class="py-4">
+                                    <span class="font-bold text-[#303030]">Horário de atendimento: <br /></span>
+                                    Segunda a Sábado: 07h00 às 23h00 <br />
+                                    Domingos e Feriados: 07h00 às 21h00
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horizontal 2 - Ícones  -->
+            <div class="flex w-full flex-wrap items-center justify-center gap-10 px-4">
+                <a href="#"><img src="src/assets/formas-pagamento/amex.svg" alt="Logo Amex" /></a>
+                <a href="#"><img src="src/assets/formas-pagamento/mastercard.svg" alt="Logo Mastercard" /></a>
+                <a href="#"><img src="src/assets/formas-pagamento/visa.svg" alt="Logo Visa" /></a>
+                <a href="#"><img src="src/assets/formas-pagamento/hipercard.svg" alt="Logo Hipercard" /></a>
+                <a href="#"><img src="src/assets/formas-pagamento/elo.svg" alt="Logo Elo" /></a>
+                <a href="#"><img src="src/assets/formas-pagamento/diners.svg" alt="Logo Diners" /></a>
+                <a href="#"><img src="src/assets/formas-pagamento/paypal-seeklogo.com.svg" alt="Logo Paypal" /></a>
+                <a href="#"><img src="src/assets/formas-pagamento/pix.svg" alt="Logo Pix" /></a>
+                <a href="#"><img src="src/assets/formas-pagamento/boleto.svg" alt="Logo Boleto" /></a>
+            </div>
+        </div>
+
+        <!-- Faixa branca -->
+        <div class="mt-10 flex flex-col items-center gap-8 px-4 sm:px-12 md:px-24 lg:px-40 2xl:px-82">
+            <p class="w-full text-center text-xs">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+                magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+                quis nostrud exerci tation ullamcorper suscipit lobortis
+                nisl ut aliquip ex ea commodo consequat. Duis autem vel eum
+                iriure dolor in hendrerit in vulputate velit esse molestie
+                consequat, vel illum dolore eu feugiat nulla facilisis at
+                vero eros et accumsan et iusto odio dignissim qui blandit
+                praesent luptatum zzril delenit augue duis dolore te feugait
+                nulla facilisi.
+            </p>
+            <!-- Ícones -->
+            <div class="flex items-center justify-center gap-6">
+                <a href=""><img src="src/assets/certificados/let-s-encrypt.svg" alt="" /></a>
+                <a href=""><img src="src/assets/certificados/vtex-pci-200.svg" alt="" /></a>
+                <a href=""><img src="src/assets/logo-avanti.png" alt="" class="max-h-2.5" /></a>
+                <a href=""><img src="src/assets/certificados/VTEX_Logo.svg" alt="" /></a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
