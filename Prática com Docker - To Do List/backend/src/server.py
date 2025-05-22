@@ -32,9 +32,8 @@ async def lifespan(app: FastAPI):
     todo_lists_collection = database.get_collection(COLLECTION_NAME)
     app.todo_dal = DAL(todo_lists_collection)
 
-    yield  # A aplicação FastAPI é iniciada aqui
+    yield
 
-    # Desligamento
     client.close()
 
 
