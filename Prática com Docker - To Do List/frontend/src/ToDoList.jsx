@@ -71,15 +71,21 @@ function ToDoList({ listId, handleBackButton }) {
   }
   return (
     <div className="ToDoList">
+      <button className="back" onClick={handleBackButton}>
+        Back
+      </button>
       <div className="box">
         <label>
           New Item:&nbsp;
           <input ref={labelRef} type="text" onKeyDown={handleKeyPress} />
         </label>
         <button
-          onClick={() =>
-            labelRef.current && handleCreateItem(labelRef.current.value)
-          }
+          onClick={() => {
+            const value = labelRef.current?.value.trim();
+            if (value) {
+              handleCreateItem(value);
+            }
+          }}
         >
           New
         </button>
