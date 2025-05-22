@@ -17,5 +17,5 @@ COPY src/ .
 EXPOSE 3001
 
 # Comando para iniciar o servidor Uvicorn quando o contêiner for executado
-# Agora ele aponta para o caminho CORRETO do server.py dentro do contêiner
+# Aponta para o caminho do server.py dentro do contêiner
 CMD ["python", "/app/server.py"]

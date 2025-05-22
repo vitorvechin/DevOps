@@ -77,7 +77,6 @@ function ListToDoLists({
   };
 
   // Componente de input para nova lista
-  // New input component using onKeyDown instead of deprecated onKeyPress
   const NewListInput = () => (
     <div className="box">
       <label>
@@ -140,7 +139,7 @@ function ListToDoLists({
     );
   }
 
-  // Main render with lists
+  // Main render 
   return (
     <div className="ListToDoLists" >
       <h1>All To-Do Lists</h1>

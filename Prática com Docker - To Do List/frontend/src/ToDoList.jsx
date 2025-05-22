@@ -12,6 +12,7 @@ function ToDoList({ listId, handleBackButton }) {
     };
     fetchData();
   }, [listId]);
+
   function handleCreateItem(label) {
     const updateData = async () => {
       const response = await axios.post(`/api/lists/${listData.id}/items`, {
@@ -25,6 +26,7 @@ function ToDoList({ listId, handleBackButton }) {
     };
     updateData();
   }
+
   function handleDeleteItem(id) {
     const updateData = async () => {
       const response = await axios.delete(
@@ -34,6 +36,16 @@ function ToDoList({ listId, handleBackButton }) {
     };
     updateData();
   }
+
+  // Função para lidar com Enter no input
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      if (labelRef.current && labelRef.current.value.trim()) {
+        handleCreateItem(labelRef.current.value);
+      }
+    }
+  };
+
   function handleCheckToggle(itemId, newState) {
     const updateData = async () => {
       const response = await axios.patch(
@@ -59,24 +71,19 @@ function ToDoList({ listId, handleBackButton }) {
   }
   return (
     <div className="ToDoList">
-      <button className="back" onClick={handleBackButton}>
-        Back
-      </button>
-      <h1>List: {listData.name}</h1>
       <div className="box">
         <label>
           New Item:&nbsp;
-          {/* CORREÇÃO AQUI: Use 'ref' em vez de 'id' */}
-          <input ref={labelRef} type="text" />
+          <input ref={labelRef} type="text" onKeyDown={handleKeyPress} />
         </label>
         <button
-          // CORREÇÃO AQUI: Acesse o valor através de labelRef.current.value
           onClick={() =>
             labelRef.current && handleCreateItem(labelRef.current.value)
           }
         >
           New
         </button>
+
       </div>
       {listData.items.length > 0 ? (
         listData.items.map((item) => {

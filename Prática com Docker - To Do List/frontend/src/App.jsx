@@ -5,7 +5,7 @@ import ListToDoLists from "./ListToDoLists";
 import ToDoList from "./ToDoList";
 
 function App() {
-  console.log("🚀 App carregado");
+  console.log("App carregado");
   const [listSummaries, setListSummaries] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
 
