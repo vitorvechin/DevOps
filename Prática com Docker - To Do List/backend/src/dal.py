@@ -35,7 +35,6 @@ class ToDoListItem(BaseModel):
 
     id: str
     label: str
-    description: Optional[str] = None
     checked: bool
 
     @staticmethod
@@ -44,7 +43,6 @@ class ToDoListItem(BaseModel):
         return ToDoListItem(
             id=str(doc["id"]),
             label=doc["label"],
-            description=doc.get("description"),
             checked=doc["checked"],
         )
 
