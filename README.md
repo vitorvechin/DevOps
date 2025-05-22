@@ -6,7 +6,7 @@ Cada trabalho busca aplicar conceitos centrais da cultura DevOps, como automaç�
 
 ## Estrutura
 
-- `Trabalho1/` — Projeto multi-contêiner utilizando Docker e Docker Compose.
+- [Prática com DevOps - To Do List](https://github.com/vitorvechin/DevOps/tree/main/Pr%C3%A1tica%20com%20Docker%20-%20To%20Do%20List) — Projeto multi-contêiner utilizando Docker e Docker Compose.
 - (Outros diretórios serão adicionados conforme os trabalhos forem desenvolvidos.)
 
 ## Autor
