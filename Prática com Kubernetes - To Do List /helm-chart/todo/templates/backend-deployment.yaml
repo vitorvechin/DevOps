@@ -25,4 +25,4 @@ spec:
             - containerPort: {{ .Values.backend.containerPort }} 
           env:
             - name: MONGO_URL
-              value: {{ .Values.backend.env.MONGO_URL | quote }} 
+              value: "mongodb://{{ .Release.Name }}-mongo:27017/todo"

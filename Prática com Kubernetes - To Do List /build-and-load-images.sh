@@ -3,15 +3,13 @@
 echo "SCRIPT DE BUILD E DEPLOYMENT INICIADO!"
 
 # --- Configurações ---
-# Nome da sua aplicação Helm (será o nome da release quando instalar)
 APP_NAME="todo-app"
-# Nome do diretório do Helm Chart
 HELM_CHART_DIR="helm-chart/todo"
 
 # Nomes das imagens e tags
 BACKEND_IMAGE_NAME="todo-backend"
 FRONTEND_IMAGE_NAME="todo-frontend"
-IMAGE_TAG="latest" # Pode ser parametrizado para usar uma versão específica
+IMAGE_TAG="latest" 
 
 # --- Funções Auxiliares ---
 
@@ -56,21 +54,16 @@ echo "Construindo imagem do Frontend: $FRONTEND_IMAGE_NAME:$IMAGE_TAG"
 docker build -t "$FRONTEND_IMAGE_NAME:$IMAGE_TAG" ./frontend || { echo "Falha ao construir a imagem do Frontend."; exit 1; }
 echo "Imagem do Frontend construída com sucesso."
 
-# 5. Carregar as imagens para o Minikube (Alternativa ao `minikube image load` quando `eval $(minikube docker-env)` é usado)
-# Quando `eval $(minikube docker-env)` é usado, as imagens já são construídas diretamente no daemon Docker do Minikube.
-# Portanto, a etapa `minikube image load` é redundante e até pode falhar se a imagem já existir no Minikube.
-# Descomentar as linhas abaixo SOMENTE se você *não* usar `eval $(minikube docker-env)` ou se precisar forçar o carregamento.
-# load_image_to_minikube "$BACKEND_IMAGE_NAME"
-# load_image_to_minikube "$FRONTEND_IMAGE_NAME"
+# 5. Carregar as imagens para o Minikube
 
 echo "As imagens já foram construídas diretamente no ambiente Docker do Minikube devido ao 'minikube docker-env'."
 echo "Processo de build e carregamento de imagens concluído!"
 
-# 6. Opcional: Reverter para o ambiente Docker local (se desejar)
+# 6. Reverter para o ambiente Docker local (se desejar)
 # echo "Revertendo para o ambiente Docker local..."
 # eval $(minikube docker-env -u)
 
-# --- Implementação do Helm (Opcional, pode ser em um script separado para deployment) ---
+# --- Implementação do Helm  ---
 
 echo "Verificando se o Ingress addon do Minikube está habilitado..."
 if ! minikube addons list | grep "ingress" | grep "enabled" &> /dev/null; then
@@ -92,5 +85,5 @@ fi
 echo "Deployment do Helm concluído!"
 echo "Para acessar a aplicação, adicione o IP do Minikube ao seu arquivo hosts para 'k8s.local'."
 echo "Execute 'minikube ip' para obter o IP."
-echo "Exemplo de entrada no /etc/hosts ou C:\\Windows\\System32\\drivers\\etc\\hosts:"
+echo "Entrada no /etc/hosts"
 echo "  $(minikube ip) k8s.local"
