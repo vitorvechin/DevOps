@@ -1,0 +1,5 @@
+apiVersion: v2
+name: todo
+description: Helm chart para aplicação To-Do List com FARM Stack
+version: 0.1.0
+
