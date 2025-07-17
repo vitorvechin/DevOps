@@ -1,5 +1,19 @@
 apiVersion: v2
-name: todo
-description: Helm chart para aplicação To-Do List com FARM Stack
+name: todo-app
+description: Um Helm Chart para implantar a aplicação To-Do List com Frontend, Backend e MongoDB.
 version: 0.1.0
 
+appVersion: "1.0.0"
+
+type: application
+
+keywords:
+  - todo
+  - backend
+  - frontend
+  - mongodb
+  - kubernetes
+
+maintainers:
+  - name: Vitor Vechin
+    email: vitorvechin@gmail.com

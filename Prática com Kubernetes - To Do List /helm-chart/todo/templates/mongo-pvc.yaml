@@ -1,10 +1,20 @@
+{{- if .Values.mongo.persistence.enabled }} 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mongo-pvc
+  name: {{ .Release.Name }}-mongo-pvc 
+  labels:
+    app: {{ .Release.Name }}-mongo
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteOnce 
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .Values.mongo.persistence.size }} 
+  {{- if .Values.mongo.persistence.storageClassName }}
+  storageClassName: {{ .Values.mongo.persistence.storageClassName }} 
+  {{- end }}
+{{- end }}

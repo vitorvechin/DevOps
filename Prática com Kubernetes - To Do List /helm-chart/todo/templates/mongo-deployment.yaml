@@ -1,26 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo
+  name: {{ .Release.Name }}-mongo
+  labels:
+    app: {{ .Release.Name }}-mongo
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.mongo.replicas }} 
   selector:
     matchLabels:
-      app: mongo
+      app: {{ .Release.Name }}-mongo
   template:
     metadata:
       labels:
-        app: mongo
+        app: {{ .Release.Name }}-mongo
     spec:
       containers:
-        - name: mongo
-          image: mongo:6
+        - name: {{ .Values.mongo.name }} 
+          image: "{{ .Values.mongo.image.repository }}:{{ .Values.mongo.image.tag }}"
+          imagePullPolicy: {{ .Values.global.imagePullPolicy }} 
           ports:
-            - containerPort: 27017
+            - containerPort: {{ .Values.mongo.containerPort }} 
           volumeMounts:
-            - name: mongo-pvc
-              mountPath: /data/db
+            - name: mongo-persistent-storage
+              mountPath: /data/db            
       volumes:
-        - name: mongo-pvc
+        - name: mongo-persistent-storage
+          {{- if .Values.mongo.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: mongo-pvc
+            claimName: {{ .Release.Name }}-mongo-pvc 
+          {{- else }}
+          emptyDir: {} 
+          {{- end }}

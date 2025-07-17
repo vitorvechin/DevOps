@@ -11,7 +11,7 @@ import uvicorn
 from dal import DAL, ListSummary, ToDoList
 
 COLLECTION_NAME = "todo_lists"
-MONGODB_URI = os.environ["MONGO_URI"]
+MONGODB_URI = os.environ["MONGO_URL"]
 DEBUG = os.getenv("DEBUG", "false").lower() == "true"
 
 
@@ -22,8 +22,8 @@ async def lifespan(app: FastAPI):
     Conecta ao MongoDB na inicialização e desconecta no desligamento.
     """
     client = AsyncIOMotorClient(MONGODB_URI)
-    database = client.get_default_database()
-
+    database = client.get_database("todo") 
+    
     # Garante que o banco de dados está disponível
     pong = await database.command("ping")
     if not pong.get("ok"):

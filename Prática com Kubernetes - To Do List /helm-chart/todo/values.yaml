@@ -1,0 +1,59 @@
+global:
+  imagePullPolicy: IfNotPresent
+
+backend:
+  name: backend
+  image:
+    repository: todo-backend
+    tag: latest              
+  containerPort: 3001       
+  service:
+    type: ClusterIP         
+    port: 8000               
+    targetPort: 3001       
+  replicas: 1                
+  env:
+    MONGO_URL: "mongodb://{{ .Release.Name }}-mongo:27017/todo" 
+
+frontend:
+  name: frontend
+  image:
+    repository: todo-frontend
+    tag: latest              
+  containerPort: 80          
+  service:
+    type: ClusterIP         
+    port: 80                
+    targetPort: 80            
+  replicas: 1       
+
+mongo:
+  name: mongo
+  image:
+    repository: mongo       
+    tag: 4.4               
+  containerPort: 27017     
+  service:
+    type: ClusterIP        
+    port: 27017             
+    targetPort: 27017       
+  replicas: 1              
+  persistence:
+    enabled: true          
+    storageClassName: standard 
+    size: 1Gi            
+
+ingress:
+  enabled: true                  
+  className: nginx              
+  host: "k8s.local"              
+  paths:
+    - path: /                   
+      pathType: Prefix           
+      serviceName: frontend     
+      servicePort: 80            
+
+    - path: /api                
+      pathType: Prefix
+      serviceName: backend       
+      servicePort: 8000          
