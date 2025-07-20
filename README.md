@@ -7,7 +7,8 @@ Cada trabalho busca aplicar conceitos centrais da cultura DevOps, como automaç�
 ## Estrutura
 
 - [Prática com Docker - To Do List](https://github.com/vitorvechin/DevOps/tree/main/Pr%C3%A1tica%20com%20Docker%20-%20To%20Do%20List) — Projeto multi-contêiner utilizando Docker e Docker Compose.
-- [Prática com Kubernetes - To Do List](https://github.com/vitorvechin/DevOps/tree/main/Pr%C3%A1tica%20com%20Kubernetes%20-%20To%20Do%20List) — Implantação de uma aplicação multi-contêiner em Kubernetes (Minikube) utilizando Helm.
+- [Prática com Kubernetes - To Do List](https://github.com/vitorvechin/DevOps/tree/main/Pr%C3%A1tica%20com%20Kubernetes%20-%20To%20Do%20List%20) — Implantação de uma aplicação multi-contêiner em Kubernetes (Minikube) utilizando Helm.
+  
   
 ## Autor
 
