@@ -2,7 +2,7 @@
 
 set -e
 
-echo "🚀 Iniciando build e deployment..."
+echo "Iniciando build e deployment..."
 
 APP_NAME="todo-app"
 HELM_CHART_DIR="helm-chart/todo"
@@ -11,7 +11,7 @@ FRONTEND_IMAGE="todo-frontend:latest"
 
 # Verifica se o Minikube está rodando
 if ! minikube status &> /dev/null; then
-  echo "🔧 Iniciando Minikube..."
+  echo "Iniciando Minikube..."
   minikube start
 else
   echo "Minikube está rodando."
