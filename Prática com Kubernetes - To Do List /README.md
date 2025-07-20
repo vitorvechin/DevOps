@@ -1,4 +1,4 @@
-# Implantação de Aplicação To-Do List com Kubernetes e Helm (Versão Simplificada)
+# Implantação de Aplicação To-Do List com Kubernetes e Helm 
 
 **Disciplina:** DevOps
 
